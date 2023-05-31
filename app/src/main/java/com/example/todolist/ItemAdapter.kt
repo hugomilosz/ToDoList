@@ -23,6 +23,18 @@ class ItemAdapter(
         )
     }
 
+    fun addItem(item: Item) {
+        items.add(item)
+        notifyItemInserted(items.size - 1)
+    }
+
+    fun deleteDoneItems() {
+        items.removeAll { item ->
+            item.isChecked
+        }
+        notifyDataSetChanged()
+    }
+
     private fun toggleStrikeThrough(itemName: TextView, isChecked: Boolean) {
         if (isChecked) {
             itemName.paintFlags = itemName.paintFlags or STRIKE_THRU_TEXT_FLAG
