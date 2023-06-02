@@ -1,27 +1,44 @@
 package com.example.todolist
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.ui.theme.ToDoListTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var itemAdapter: ItemAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ToDoListTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
+
+        setContentView(R.layout.activity_main)
+        itemAdapter = ItemAdapter(mutableListOf())
+
+        var toDoItems = findViewById<RecyclerView>(R.id.toDoItems)
+        var addToDo = findViewById<Button>(R.id.toDoItems)
+        var deleteToDos = findViewById<Button>(R.id.deleteToDos)
+        var toDoTitle = findViewById<EditText>(R.id.toDoTitle)
+
+        toDoItems.adapter = itemAdapter
+        toDoItems.layoutManager = LinearLayoutManager(this)
+
+        addToDo.setOnClickListener {
+            val todoTitle = toDoTitle.text.toString()
+            if(todoTitle.isNotEmpty()) {
+                val item = Item(todoTitle)
+                itemAdapter.addItem(item)
+                toDoTitle.text.clear()
             }
+        }
+        deleteToDos.setOnClickListener {
+            itemAdapter.deleteDoneItems()
         }
     }
 }
