@@ -21,10 +21,10 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
         itemAdapter = ItemAdapter(mutableListOf())
 
-        var toDoItems = findViewById<RecyclerView>(R.id.toDoItems)
-        var addToDo = findViewById<Button>(R.id.toDoItems)
-        var deleteToDos = findViewById<Button>(R.id.deleteToDos)
-        var toDoTitle = findViewById<EditText>(R.id.toDoTitle)
+        val toDoItems = findViewById<RecyclerView>(R.id.toDoItems)
+        val addToDo = findViewById<Button>(R.id.addToDo)
+        val deleteToDos = findViewById<Button>(R.id.deleteToDos)
+        val toDoTitle = findViewById<EditText>(R.id.toDoTitle)
 
         toDoItems.adapter = itemAdapter
         toDoItems.layoutManager = LinearLayoutManager(this)
