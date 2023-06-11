@@ -26,4 +26,4 @@ Following a YouTube tutorial to create an Android app using Kotlin.
 
 ## Future Development
 
-I plan to implement a database to allow for the persistent storage of items in the list.
+I plan to implement a database to allow for the persistent storage of items in the list. (Use the Room library to achieve this)
