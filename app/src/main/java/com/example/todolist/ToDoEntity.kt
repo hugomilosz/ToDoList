@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "todo_table")
+@Entity(tableName = "toDoTable")
 
 data class ToDoEntity(
     @PrimaryKey(autoGenerate = true) val id: Int?,
